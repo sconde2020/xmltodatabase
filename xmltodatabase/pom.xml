@@ -67,6 +67,28 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-xjc-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>xsdtojava</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<xsdOptions>
+						<xsdOption>
+							<xsd>${basedir}/src/main/resources/xsd/people.xsd</xsd>
+							<packagename>com.sconde.xmltodatabase.generated</packagename>
+						</xsdOption>
+					</xsdOptions>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

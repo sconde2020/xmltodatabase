@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j2;
 public class DebugMessage {
 
     public static void start(String function) {
-        log.debug(" ");
         log.debug(function + " starts");
     }
 
