@@ -23,8 +23,8 @@ public class MessageListener {
     @JmsListener(destination = "${message.queue.name}")
     public void onMessage(Message message) throws JMSException {
         start("onMessage");
-        log.info("Received message from " + queueName);
-        log.debug(message.getBody(String.class));
+        log.debug("Received message from " + queueName
+                + "\n" + message.getBody(String.class));
         end("onMessage");
     }
 }

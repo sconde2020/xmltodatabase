@@ -9,6 +9,9 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 @Service
 @EnableJms
@@ -22,10 +25,15 @@ public class XmlMessageProducer {
     private JmsTemplate jmsTemplate;
 
     @PostConstruct
-    public void init() throws JmsException, InterruptedException {
+    public void init() throws JmsException, InterruptedException, IOException {
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = loader.getResourceAsStream("data/people.xml");
+        String inputString = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+        log.info("Input data:\n" + inputString);
+
         while (true) {
-            Thread.sleep(10000);
-            jmsTemplate.convertAndSend(queueName, "<salut>Hello From " + queueName + "</salut>");
+            Thread.sleep(20000);
+            jmsTemplate.convertAndSend(queueName, inputString);
             log.info("Message sent...");
         }
     }
