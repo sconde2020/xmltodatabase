@@ -1,4 +1,4 @@
-package com.sconde.xmltodatabase.debug;
+package com.sconde.xmltodatabase.utils;
 
 import lombok.extern.log4j.Log4j2;
 

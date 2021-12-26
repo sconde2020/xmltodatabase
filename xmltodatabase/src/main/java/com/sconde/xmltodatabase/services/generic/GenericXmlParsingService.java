@@ -10,8 +10,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import static com.sconde.xmltodatabase.debug.DebugMessage.end;
-import static com.sconde.xmltodatabase.debug.DebugMessage.start;
+import static com.sconde.xmltodatabase.utils.DebugMessage.end;
+import static com.sconde.xmltodatabase.utils.DebugMessage.start;
 
 @Service
 @Log4j2

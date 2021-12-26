@@ -6,8 +6,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import static com.sconde.xmltodatabase.debug.DebugMessage.end;
-import static com.sconde.xmltodatabase.debug.DebugMessage.start;
+import static com.sconde.xmltodatabase.utils.DebugMessage.end;
+import static com.sconde.xmltodatabase.utils.DebugMessage.start;
 
 @Service
 @Log4j2

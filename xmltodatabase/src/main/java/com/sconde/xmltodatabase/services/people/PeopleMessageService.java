@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.sconde.xmltodatabase.debug.DebugMessage.*;
+import static com.sconde.xmltodatabase.utils.DebugMessage.*;
 
 @Service
 @Log4j2

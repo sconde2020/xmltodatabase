@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.jms.JMSException;
 import javax.jms.Message;
 
-import static com.sconde.xmltodatabase.debug.DebugMessage.*;
+import static com.sconde.xmltodatabase.utils.DebugMessage.*;
 
 @Service
 @EnableJms
