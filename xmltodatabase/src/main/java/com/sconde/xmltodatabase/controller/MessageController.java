@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.sconde.xmltodatabase.debug.DebugMessage.*;
+import static com.sconde.xmltodatabase.utils.MainTagName.*;
 
 @Service
 @Log4j2
@@ -17,7 +18,7 @@ public class MessageController {
     public void control(String message) {
         start("control");
 
-        if (message.contains("<people>") && message.contains("</people>")) {
+        if (message.contains(PEOPLE_START_TAG) && message.contains(PEOPLE_END_TAG)) {
             log.debug("People message: " + "\n" + message);
             peopleMessageService.process(message);
         }

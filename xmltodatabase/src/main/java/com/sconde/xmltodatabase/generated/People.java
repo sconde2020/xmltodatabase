@@ -53,7 +53,7 @@ import javax.xml.bind.annotation.XmlType;
     "person"
 })
 @XmlRootElement(name = "people")
-public class People extends Message {
+public class People {
 
     protected List<Person> person;
 
