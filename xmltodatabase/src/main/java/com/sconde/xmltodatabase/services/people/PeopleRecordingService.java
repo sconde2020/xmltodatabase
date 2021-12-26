@@ -1,6 +1,6 @@
 package com.sconde.xmltodatabase.services.people;
 
-import com.sconde.xmltodatabase.database.PeopleRepository;
+import com.sconde.xmltodatabase.repository.PeopleRepository;
 import com.sconde.xmltodatabase.model.Student;
 import com.sconde.xmltodatabase.services.interfaces.RecordingService;
 import lombok.extern.log4j.Log4j2;

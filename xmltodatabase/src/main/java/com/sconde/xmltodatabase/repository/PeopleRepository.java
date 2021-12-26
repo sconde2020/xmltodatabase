@@ -1,4 +1,4 @@
-package com.sconde.xmltodatabase.database;
+package com.sconde.xmltodatabase.repository;
 
 import com.sconde.xmltodatabase.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
