@@ -6,7 +6,7 @@
 //
 
 
-package com.sconde.xmltodatabase.generated;
+package com.sconde.xmltodatabase.generated.people;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

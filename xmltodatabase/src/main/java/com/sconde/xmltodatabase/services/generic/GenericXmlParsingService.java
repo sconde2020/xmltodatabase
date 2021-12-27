@@ -1,5 +1,6 @@
 package com.sconde.xmltodatabase.services.generic;
 
+import com.sconde.xmltodatabase.exceptions.ParsingException;
 import com.sconde.xmltodatabase.services.interfaces.XmlParsingService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -18,22 +19,23 @@ import static com.sconde.xmltodatabase.utils.DebugMessage.start;
 public class GenericXmlParsingService implements XmlParsingService {
 
     @Override
-    public Object parse(String xmlMessage, String sourcesPath)  {
-        start("parse");
-
-        Object parsedObject = null;
+    public Object parse(String xmlMessage, String sourcesPath) throws ParsingException {
         try {
+            start("parse");
+
+            Object parsedObject;
+            InputStream inputStream = new ByteArrayInputStream(xmlMessage.getBytes(StandardCharsets.UTF_8));
+
             JAXBContext jc = JAXBContext.newInstance(sourcesPath);
             Unmarshaller unmarshaller = jc.createUnmarshaller();
-
-            InputStream inputStream = new ByteArrayInputStream(xmlMessage.getBytes(StandardCharsets.UTF_8));
             parsedObject = unmarshaller.unmarshal(inputStream);
             log.debug("Message parsed successfully");
-        } catch (Exception e) {
-            log.error("Parsing Exception: " + e);
-        }
 
-        end("parse");
-        return parsedObject;
+            end("parse");
+            return parsedObject;
+        } catch (Exception e) {
+            log.error(e.toString());
+            throw new ParsingException("Error when parsing xml message");
+        }
     }
 }

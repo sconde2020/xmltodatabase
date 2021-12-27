@@ -1,38 +1,56 @@
 package com.sconde.xmltodatabase.listener;
 
 import com.sconde.xmltodatabase.controller.MessageController;
+import com.sconde.xmltodatabase.exceptions.MappingException;
+import com.sconde.xmltodatabase.exceptions.ParsingException;
+import com.sconde.xmltodatabase.exceptions.RecordingException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.config.JmsListenerEndpointRegistry;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
 import javax.jms.Message;
+
+import java.util.Objects;
 
 import static com.sconde.xmltodatabase.utils.DebugMessage.*;
 
 @Service
-@EnableJms
 @Log4j2
 public class MessageListener {
-
-    @Value("${message.queue.name}")
-    private String queueName;
 
     @Autowired
     private MessageController controller;
 
-    @JmsListener(destination = "${message.queue.name}")
-    public void onMessage(Message message) throws JMSException {
-        log.debug("");
-        start("onMessage");
+    @Value("${message.queue.name}")
+    private String queueName;
 
-        String content = message.getBody(String.class);
-        log.debug("Received message from " + queueName);
-        controller.control(content);
+    @JmsListener(id = "xmlMessageListener",
+            containerFactory = "jmsListenerContainerFactory",
+            destination = "${message.queue.name}")
+    @Transactional( rollbackFor = Exception.class)
+    public void onMessage(Message message) throws Exception {
+        String messageBody = null;
+        try {
+            log.debug("");
+            start("onMessage");
 
-        end("onMessage");
+            messageBody = message.getBody(String.class);
+            log.debug("Received message from " + queueName);
+            controller.control(messageBody);
+
+            end("onMessage");
+        } catch (ParsingException | MappingException e) {
+            log.error(e.toString());
+            log.error("Verify xml document :\n" + messageBody);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

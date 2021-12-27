@@ -6,7 +6,7 @@
 //
 
 
-package com.sconde.xmltodatabase.generated;
+package com.sconde.xmltodatabase.generated.people;
 
 import java.util.ArrayList;
 import java.util.List;
