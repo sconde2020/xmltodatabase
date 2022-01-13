@@ -2,7 +2,7 @@ package com.sconde.xmltodatabase.services.people;
 
 import com.sconde.xmltodatabase.exceptions.ParsingException;
 import com.sconde.xmltodatabase.generated.people.People;
-import com.sconde.xmltodatabase.services.generic.GenericXmlParsingService;
+import com.sconde.xmltodatabase.services.common.GenericXmlParsingService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

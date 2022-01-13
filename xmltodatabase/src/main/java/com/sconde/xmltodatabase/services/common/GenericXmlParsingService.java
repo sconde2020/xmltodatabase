@@ -1,4 +1,4 @@
-package com.sconde.xmltodatabase.services.generic;
+package com.sconde.xmltodatabase.services.common;
 
 import com.sconde.xmltodatabase.exceptions.ParsingException;
 import com.sconde.xmltodatabase.services.interfaces.XmlParsingService;
